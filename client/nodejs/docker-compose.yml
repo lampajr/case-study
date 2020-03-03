@@ -1,0 +1,20 @@
+version: "3.7"
+
+services:
+  nodejs-backend:
+    build:
+      context: ./
+    restart: always
+    container_name: nodejs-backend
+    ports:
+      - "3000:3000"
+    networks:
+      case-study:
+        ipv4_address: 172.16.237.17
+
+networks:
+  case-study:
+    ipam:
+      driver: default
+      config:
+        - subnet: "172.16.237.0/24"

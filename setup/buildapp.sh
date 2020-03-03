@@ -10,12 +10,13 @@ set -e
 
 printf "\n---Building Maven...---\n"
 
-cd ../client
+cd ../client/java
 mvn package -DskipTests=true
 
 printf "\n---Copying executables...---\n"
 
 #cp -r frontend/dist ../../AutomateSetup/client-app/frontend
-cp -r backend/target ../setup/client-app/backend/target
+cp -r backend/target ../../setup/client-app/backend/target
+cp -r ../nodejs/* ../../setup/client-app/nodejs-backend/target
 
 printf "\n---DONE!---\n"

@@ -1,0 +1,17 @@
+{
+  "name": "client-backend",
+  "version": "1.0.0",
+  "description": "Case study client application server for handling asynchronous responses fro mthe SCIP gateway",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "author": "Andrea Lamparelli",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "jayson": "^3.2.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.2"
+  }
+}

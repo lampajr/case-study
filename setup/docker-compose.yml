@@ -58,6 +58,17 @@ services:
       case-study:
         ipv4_address: 172.16.238.17
 
+  nodejs-backend:
+    build:
+      context: ./client-app/nodejs-backend
+    restart: always
+    container_name: nodejs-backend
+    ports:
+      - "3000:3000"
+    networks:
+      case-study:
+        ipv4_address: 172.16.238.18
+
 networks:
   case-study:
     ipam:
