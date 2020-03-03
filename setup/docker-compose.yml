@@ -39,7 +39,7 @@ services:
       - "8545:8545"
     networks:
       case-study:
-        ipv4_address: 172.16.238.11
+        ipv4_address: 172.16.238.12
 
 networks:
   case-study:

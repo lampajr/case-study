@@ -11,7 +11,7 @@ set -e
 
 printf "\n---Copying Ethereum smart contract to working directory of ganache-cli docker images...---\n"
 
-cp -r ../SmartContracts/Ethereum/Seafood ./ganache-cli/Seafood
+cp -r ../smartcontracts/ethereum/Seafood ./ganache-cli/Seafood
 
 printf "\n---Bringing up sudo docker images...---\n"
 
