@@ -22,7 +22,7 @@ services:
       [
         "ganache-cli",
         "-m",
-        "smart contracts composition",
+        "smart contract composition",
         "--defaultBalanceEther",
         "100000000",
         "-l",

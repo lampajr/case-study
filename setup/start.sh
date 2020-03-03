@@ -13,7 +13,7 @@ printf "\n---Copying Ethereum smart contract to working directory of ganache-cli
 
 cp -r ../smartcontracts/ethereum/Seafood ./ganache-cli/Seafood
 
-printf "\n---Bringing up sudo docker images...---\n"
+printf "\n---Bringing up docker images...---\n"
 
 sudo docker-compose up -d
 
