@@ -1,0 +1,49 @@
+version: "3.7"
+
+services:
+  bal-ganache:
+    build:
+      context: ./bal
+      target: bal-ethereum
+    restart: always
+    container_name: bal-ganache
+    ports:
+      - "8081:8080"
+    networks:
+      case-study:
+        ipv4_address: 172.16.238.10
+
+  ganache-with-truffle:
+    container_name: ganache-with-truffle
+    build:
+      context: ./ganache-cli
+      target: ganache
+    command:
+      [
+        "ganache-cli",
+        "-m",
+        "smart contracts composition",
+        "--defaultBalanceEther",
+        "100000000",
+        "-l",
+        "471238800",
+        "-g",
+        "1",
+        "-v",
+        "--keepAliveTimeout",
+        "15000",
+        "-b",
+        "3",
+      ]
+    ports:
+      - "8545:8545"
+    networks:
+      case-study:
+        ipv4_address: 172.16.238.11
+
+networks:
+  case-study:
+    ipam:
+      driver: default
+      config:
+        - subnet: "172.16.238.0/24"
