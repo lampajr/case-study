@@ -43,7 +43,7 @@ services:
 
   case-study-backend:
     build:
-      context: ./client-app/backend
+      context: ./client-app/java-backend
     restart: always
     container_name: case-study-backend
     ports:
