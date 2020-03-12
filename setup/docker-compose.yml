@@ -69,6 +69,17 @@ services:
       case-study:
         ipv4_address: 172.16.238.18
 
+  tool:
+    build:
+      context: ./client-app/tool
+    restart: always
+    container_name: tool
+    ports:
+      - "3001:3001"
+    networks:
+      case-study:
+        ipv4_address: 172.16.238.19
+
 networks:
   case-study:
     ipam:
