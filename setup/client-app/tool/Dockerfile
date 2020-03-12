@@ -8,4 +8,5 @@ RUN clisc init --server --yes
 
 EXPOSE 3001
 
+# Start client-app sever
 CMD [ "node", "index.js" ]
