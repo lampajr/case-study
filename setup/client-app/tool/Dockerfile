@@ -1,5 +1,6 @@
 FROM node:10
 
+# Create app directory
 WORKDIR /usr/src/tool
 
 RUN npm install -g @toolscip/clisc
