@@ -1,7 +1,7 @@
 FROM node:10
 
 # Create app directory
-WORKDIR /usr/src/tool
+WORKDIR /usr/src/cli-app
 
 RUN npm install -g @toolscip/clisc
 RUN npm install -g ajv
