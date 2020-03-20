@@ -25,6 +25,11 @@ printf "\n---Deploying the Seafood smart contract on the ganache Ethereum simula
 
 sudo docker exec ganache-with-truffle truffle migrate
 
+printf "\n---Installing the Dairy Fabric smart contract on peer0.org1.example.com---\n"
+
+chmod +x fabric/scripts/script.sh
+sudo docker exec cli scripts/script.sh
+
 printf "\n---Cleaning up...---\n"
 
 rm -rf ./ganache-cli/Seafood
