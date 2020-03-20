@@ -23,6 +23,7 @@ NO_CHAINCODE="$5"
 COUNTER=1
 MAX_RETRY=10
 CC_SRC_PATH="/opt/gopath/src/github.com/chaincode/dairy/javascript/"
+# CC_SRC_PATH="../../../smartcontracts/fabric/dairy/javascript/"
 
 echo "Channel name : "$CHANNEL_NAME
 
@@ -50,7 +51,8 @@ createChannel() {
 }
 
 joinChannel () {
-joinChannelWithRetry 1 0
+# joinChannelWithRetry 1 0
+joinChannelWithRetry 0 1
 echo "===================== peer${peer}.org${org} joined channel '$CHANNEL_NAME' ===================== "
 sleep $DELAY
 echo
@@ -71,10 +73,12 @@ updateAnchorPeers 0 1
 if [ "${NO_CHAINCODE}" != "true" ]; then
 
 	echo "Installing chaincode on peer0.org1..."
+	# installChaincode 0 1
 	peer chaincode install -n dairy -v 1.0 -p $CC_SRC_PATH -l node
 	
+
 	echo "Instantiating chaincode on peer0.org1..."
-	#instantiateChaincode 0 1
+	# instantiateChaincode 0 1
 	peer chaincode instantiate \
     -o orderer.example.com:7050 \
     -C mychannel \
@@ -87,6 +91,20 @@ if [ "${NO_CHAINCODE}" != "true" ]; then
     --cafile /opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/ordererOrganizations/example.com/orderers/orderer.example.com/msp/tlscacerts/tlsca.example.com-cert.pem \
     --peerAddresses peer0.org1.example.com:7051 \
     --tlsRootCertFiles /opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/tls/ca.crt
+
+	sleep 10
+	echo "Sending setup transaction on peer0.org1..."
+	peer chaincode invoke \
+    -o orderer.example.com:7050 \
+    -C mychannel \
+    -n dairy \
+    -c '{"function":"setup","Args":[]}' \
+    --waitForEvent \
+    --tls \
+    --cafile /opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/ordererOrganizations/example.com/orderers/orderer.example.com/msp/tlscacerts/tlsca.example.com-cert.pem \
+    --peerAddresses peer0.org1.example.com:7051 \
+    --tlsRootCertFiles /opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/tls/ca.crt
+	
 fi
 
 echo
